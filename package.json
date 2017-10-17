@@ -1,0 +1,19 @@
+{
+  "name": "futebol.io",
+  "version": "1.0.0",
+  "description": "Another Vue project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfoel/futebol.io.git"
+  },
+  "author": "Rafael Franco <rafaelfr@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rfoel/futebol.io/issues"
+  },
+  "homepage": "https://github.com/rfoel/futebol.io#readme"
+}
