@@ -1,6 +1,12 @@
 <template>
   <div id="app">
     <img src="./assets/futebol.io.svg">
+  <div class="error" v-if="error">
+    {{error}}
+  </div>
+  <div v-if="data">
+  <h1>{{data["nome-completo"]}}</h1>
+  </div>
   </div>
 </template>
 
@@ -9,19 +15,19 @@ export default {
   name: "app",
   data() {
     return {
-      data: {},
-      error: {}
+      data: null,
+      error: null
     }
   },
   created() {
     this.$jsonp(
-      "https://jsuol.com.br/c/monaco/utils/gestor/commons.js?callback=simulador_dados_jsonp&file=commons.uol.com.br%2Fsistemas%2Fesporte%2Fmodalidades%2Ffutebol%2Fcampeonatos%2Fdados%2F2017%2F30%2Fdados.json"
+      "https://jsuol.com.br/c/monaco/utils/gestor/commons.js?file=commons.uol.com.br/sistemas/esporte/modalidades/futebol/campeonatos/dados/2017/30/dados.json"
     )
       .then(json => {
-        data = json
+        this.data = json
       })
-      .catch(err => {
-        error = err
+      .catch(error => {
+        this.error = error
       })
   }
 }
