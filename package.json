@@ -12,7 +12,8 @@
     "test": "npm run unit"
   },
   "dependencies": {
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vue-jsonp": "^0.1.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
