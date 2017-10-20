@@ -7,15 +7,21 @@
 <script>
 export default {
   name: "app",
+  data() {
+    return {
+      data: {},
+      error: {}
+    }
+  },
   created() {
     this.$jsonp(
       "https://jsuol.com.br/c/monaco/utils/gestor/commons.js?callback=simulador_dados_jsonp&file=commons.uol.com.br%2Fsistemas%2Fesporte%2Fmodalidades%2Ffutebol%2Fcampeonatos%2Fdados%2F2017%2F30%2Fdados.json"
     )
       .then(json => {
-        console.log(json)
+        data = json
       })
       .catch(err => {
-        console.log(err)
+        error = err
       })
   }
 }
