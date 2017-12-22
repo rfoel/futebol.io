@@ -1,26 +1,25 @@
-"use strict"
 require("es6-promise").polyfill()
 
 const request = require("request")
 const cheerio = require("cheerio")
 
-const urlBase = "http://globoesporte.globo.com/futebol/brasileirao-serie-"
-const userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9"
+const urlBase = "http://globoesporte.globo.com/futebol"
+const userAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.62 Safari/537.36"
 
-exports.rodadaAtual = function(serie) {
-  return new Promise(function(accept, error) {
-    var options = {
+exports.rodadaAtual = serie => {
+  return new Promise((resolve, reject) => {
+    const options = {
       url: urlBase + serie,
       headers: {
         "User-Agent": userAgent
       }
     }
-    request(options, function(error, response, html) {
+    request(options, (error, response, html) => {
       if (!error) {
         var $ = cheerio.load(html)
         var lista = []
 
-        $(".lista-de-jogos-conteudo li").each(function() {
+        $(".lista-de-jogos-conteudo li").each(() => {
           var rodada = {}
           var item = $(this)
           rodada.mandante = item
@@ -47,35 +46,35 @@ exports.rodadaAtual = function(serie) {
           if (!rodada.placarVisitante) rodada.placarVisitante = 0
           lista.push(rodada)
         })
-        accept(lista)
+        resolve(lista)
       } else {
-        error({ error: "Não foi possível retornar as informações!" })
+        reject({ error: "Não foi possível retornar as informações!" })
       }
     })
   })
 }
 
-exports.tabela = function(serie) {
-  return new Promise(function(accept, error) {
+exports.tabela = serie => {
+  return new Promise((resolve, reject) => {
     var options = {
       url: urlBase + serie,
       headers: {
         "User-Agent": userAgent
       }
     }
-    request(options, function(error, response, html) {
+    request(options, (error, response, html) => {
       if (!error) {
         var $ = cheerio.load(html)
         var lista = []
 
-        $(".tabela-times tbody tr").each(function() {
+        $(".tabela-times tbody tr").each(() => {
           var item = $(this)
           var time = {}
           time.nome = item.find(".tabela-times-time-link").attr("title")
           lista.push(time)
         })
         var x = 0
-        $(".tabela-pontos tbody tr").each(function() {
+        $(".tabela-pontos tbody tr").each(() => {
           var item = $(this)
           lista[x].pontos = item.find(".tabela-pontos-ponto").text()
           lista[x].jogos = item
@@ -140,9 +139,9 @@ exports.tabela = function(serie) {
             .text()
           x++
         })
-        accept(lista)
+        resolve(lista)
       } else {
-        error({ error: "Não foi possível retornar as informações!" })
+        reject({ error: "Não foi possível retornar as informações!" })
       }
     })
   })
