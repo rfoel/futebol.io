@@ -1,8 +1,6 @@
 {
   "name": "futebol.io",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Rafael Franco <rafaelfr@outlook.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -12,6 +10,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "es6-promise": "^4.2.2",
+    "jquery": "^3.2.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
