@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-		<div v-for="item of data" :key="item.name">
+ 		<div v-for="item of data" :key="item.name">
 			{{item.name}}
 		</div>
     <router-view/>
@@ -9,7 +8,7 @@
 </template>
 
 <script>
-import * as api from "./api.js"
+import * as scraper from "./scraper.js"
 
 export default {
 	name: "app",
@@ -19,13 +18,22 @@ export default {
 		}
 	},
 	mounted() {
-		api
-			.standings("/brasileirao-serie-b")
+		scraper
+			.tabela("brasileirao-serie-a")
 			.then(data => {
-				console.log(data)
-				this.data = data
+				// console.log(data)
 			})
-			.catch(error => {})
+			.catch(error => {
+				console.error(error)
+			})		
+		// scraper
+		// 	.standings("brasileirao-serie-a")
+		// 	.then(data => {
+		// 		console.log(data)
+		// 	})
+		// 	.catch(error => {
+		// 		console.log(error)
+		// 	})
 	}
 }
 </script>
