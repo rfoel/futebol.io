@@ -21,25 +21,24 @@ export const matches = league => {
         const $ = cheerio.load(html)
         let matches = []
 
-        $(".lista-de-jogos-conteudo li").each(() => {
+        $(".lista-de-jogos-conteudo li").each((index, item) => {
           let match = {}
-          let item = $(this)
-          match.homeTeam = item
+          match.homeTeam = $(item)
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-mandante")
             .find(".placar-jogo-equipes-sigla")
             .attr("title")
-          match.homeScore = item
+          match.homeScore = $(item)
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-placar")
             .find(".placar-jogo-equipes-placar-mandante")
             .text()
-          match.awayTeam = item
+          match.awayTeam = $(item)
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-visitante")
             .find(".placar-jogo-equipes-sigla")
             .attr("title")
-          match.awayScore = item
+          match.awayScore = $(item)
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-placar")
             .find(".placar-jogo-equipes-placar-visitante")
