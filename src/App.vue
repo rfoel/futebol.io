@@ -19,7 +19,7 @@ export default {
 	},
 	mounted() {
 		scraper
-			.matches("brasileirao-serie-a")
+			.matches("futebol-internacional/futebol-ingles")
 			.then(data => {
 				console.log(data)
 			})
