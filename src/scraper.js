@@ -69,57 +69,45 @@ export const tabela = serie => {
         const $ = cheerio.load(html)
         let lista = []
         
-        $(".tabela-times tbody tr").each(() => {
-          let item = $(this)          
+        $(".tabela-times tbody tr").each((index, item) => {
           let time = {}
-          time.nome = item.find(".tabela-times-time-link").attr("title")
+          time.nome = $(item).find(".tabela-times-time-link").attr("title")
           lista.push(time)
         })
-        console.log(lista)
         let x = 0
-        $(".tabela-pontos tbody tr").each(() => {
-          let item = $(this)
-          lista[x].pontos = item.find(".tabela-pontos-ponto").text()
-          lista[x].jogos = item
+        $(".tabela-pontos tbody tr").each((index, item) => {
+          lista[x].pontos = $(item).find(".tabela-pontos-ponto").text()
+          lista[x].jogos = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .text()
-          lista[x].vitorias = item
+          lista[x].vitorias = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .text()
-          lista[x].empates = item
-            .find(".tabela-pontos-ponto")
-            .next()
-            .next()
-            .next()
-            .text()
-          lista[x].derrotas = item
+          lista[x].empates = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .next()
-            .next()
             .text()
-          lista[x].golsPro = item
+          lista[x].derrotas = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .next()
             .next()
-            .next()
             .text()
-          lista[x].golsContra = item
+          lista[x].golsPro = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .next()
             .next()
             .next()
-            .next()
             .text()
-          lista[x].saldoGols = item
+          lista[x].golsContra = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
@@ -127,9 +115,18 @@ export const tabela = serie => {
             .next()
             .next()
             .next()
+            .text()
+          lista[x].saldoGols = $(item)
+            .find(".tabela-pontos-ponto")
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
             .next()
             .text()
-          lista[x].percentual = item
+          lista[x].percentual = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
@@ -142,6 +139,7 @@ export const tabela = serie => {
             .text()
           x++
         })
+        console.log(lista)
         resolve(lista)
       } else {
         reject({ error: "Não foi possível retornar as informações!" })
