@@ -19,21 +19,13 @@ export default {
 	},
 	mounted() {
 		scraper
-			.tabela("brasileirao-serie-a")
+			.matches("brasileirao-serie-a")
 			.then(data => {
-				// console.log(data)
+				console.log(data)
 			})
 			.catch(error => {
 				console.error(error)
 			})		
-		// scraper
-		// 	.standings("brasileirao-serie-a")
-		// 	.then(data => {
-		// 		console.log(data)
-		// 	})
-		// 	.catch(error => {
-		// 		console.log(error)
-		// 	})
 	}
 }
 </script>
