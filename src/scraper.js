@@ -8,10 +8,10 @@ const urlBase = "http://globoesporte.globo.com/futebol/"
 const userAgent =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9"
 
-export const rodadaAtual = serie => {
+export const matches = league => {
   return new Promise((resolve, reject) => {
     const options = {
-      url: urlBase + serie,
+      url: `http://allorigins.me/get?method=raw&url=${urlBase+league}&callback=?`,      
       headers: {
         "User-Agent": userAgent
       }
@@ -19,47 +19,47 @@ export const rodadaAtual = serie => {
     request(options, (error, response, html) => {
       if (!error) {
         const $ = cheerio.load(html)
-        let lista = []
+        let matches = []
 
         $(".lista-de-jogos-conteudo li").each(() => {
-          let rodada = {}
+          let match = {}
           let item = $(this)
-          rodada.mandante = item
+          match.homeTeam = item
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-mandante")
             .find(".placar-jogo-equipes-sigla")
             .attr("title")
-          rodada.placarMandante = item
+          match.homeScore = item
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-placar")
             .find(".placar-jogo-equipes-placar-mandante")
             .text()
-          rodada.visitante = item
+          match.awayTeam = item
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-visitante")
             .find(".placar-jogo-equipes-sigla")
             .attr("title")
-          rodada.placarVisitante = item
+          match.awayScore = item
             .find(".placar-jogo-equipes")
             .find(".placar-jogo-equipes-placar")
             .find(".placar-jogo-equipes-placar-visitante")
             .text()
-          if (!rodada.placarMandante) rodada.placarMandante = 0
-          if (!rodada.placarVisitante) rodada.placarVisitante = 0
-          lista.push(rodada)
+          if (!match.homeScore) match.homeScore = 0
+          if (!match.awayScore) match.awayScore = 0
+          matches.push(match)
         })
-        resolve(lista)
+        resolve(matches)
       } else {
-        reject({ error: "Não foi possível retornar as informações!" })
+        reject({ error: "Couldn't fetch the data." })
       }
     })
   })
 }
 
-export const tabela = serie => {
+export const standings = league => {
   return new Promise((resolve, reject) => {
     const options = {
-      url: `http://allorigins.me/get?method=raw&url=${urlBase+serie}&callback=?`,
+      url: `http://allorigins.me/get?method=raw&url=${urlBase+league}&callback=?`,
       headers: {
         "User-Agent": userAgent
       }
@@ -67,56 +67,47 @@ export const tabela = serie => {
     request(options, (error, response, html) => {
       if (!error) {
         const $ = cheerio.load(html)
-        let lista = []
+        let list = []
         
         $(".tabela-times tbody tr").each((index, item) => {
-          let time = {}
-          time.nome = $(item).find(".tabela-times-time-link").attr("title")
-          lista.push(time)
+          let club = {}
+          club.name = $(item).find(".tabela-times-time-link").attr("title")
+          list.push(club)
         })
         let x = 0
         $(".tabela-pontos tbody tr").each((index, item) => {
-          lista[x].pontos = $(item).find(".tabela-pontos-ponto").text()
-          lista[x].jogos = $(item)
+          list[x].points = $(item).find(".tabela-pontos-ponto").text()
+          list[x].played = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .text()
-          lista[x].vitorias = $(item)
+          list[x].won = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .text()
-          lista[x].empates = $(item)
-            .find(".tabela-pontos-ponto")
-            .next()
-            .next()
-            .next()
-            .text()
-          lista[x].derrotas = $(item)
+          list[x].drawn = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .next()
-            .next()
             .text()
-          lista[x].golsPro = $(item)
+          list[x].lost = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .next()
             .next()
-            .next()
             .text()
-          lista[x].golsContra = $(item)
+          list[x].goalsFor = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
             .next()
             .next()
             .next()
-            .next()
             .text()
-          lista[x].saldoGols = $(item)
+          list[x].goalsAgainst = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
@@ -124,9 +115,18 @@ export const tabela = serie => {
             .next()
             .next()
             .next()
+            .text()
+          list[x].goalDifference = $(item)
+            .find(".tabela-pontos-ponto")
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
+            .next()
             .next()
             .text()
-          lista[x].percentual = $(item)
+          list[x].percentage = $(item)
             .find(".tabela-pontos-ponto")
             .next()
             .next()
@@ -139,10 +139,9 @@ export const tabela = serie => {
             .text()
           x++
         })
-        console.log(lista)
-        resolve(lista)
+        resolve(list)
       } else {
-        reject({ error: "Não foi possível retornar as informações!" })
+        reject({ error: "Couldn't fetch the data." })
       }
     })
   })
