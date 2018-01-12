@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
+    "start": "node server.js",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "build": "node build/build.js"
@@ -13,6 +13,7 @@
     "buefy": "^0.6.2",
     "cheerio": "^1.0.0-rc.2",
     "es6-promise": "^4.2.2",
+    "express": "^4.16.2",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.6",
     "vue": "^2.5.2",
