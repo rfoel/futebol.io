@@ -60,7 +60,6 @@ export default {
 		scraper
 			.standings("brasileirao-serie-a")
 			.then(data => {
-        console.log(data)
         this.data = data
 			})
 			.catch(error => {
