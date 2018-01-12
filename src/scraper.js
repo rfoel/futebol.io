@@ -11,7 +11,7 @@ const userAgent =
 export const matches = league => {
   return new Promise((resolve, reject) => {
     const options = {
-      url: `http://allorigins.me/get?method=raw&url=${urlBase+league}&callback=?`,      
+      url: `http://allorigins.me/get?method=raw&url=http://globoesporte.globo.com/servico/esportes_campeonato/responsivo/widget-uuid/19c9e918-61c8-4b41-bb43-e9f0749dab2e/fases/fase-unica-campeonato-ingles-2017-2018/rodada/23/jogos.html&callback=?`,      
       headers: {
         "User-Agent": userAgent
       }
@@ -21,7 +21,7 @@ export const matches = league => {
         const $ = cheerio.load(html)
         let matches = []
 
-        $(".lista-de-jogos-conteudo li").each((index, item) => {
+        $(".lista-de-jogos-item").each((index, item) => {
           let match = {}
           match.homeTeam = $(item)
             .find(".placar-jogo-equipes")
@@ -43,8 +43,6 @@ export const matches = league => {
             .find(".placar-jogo-equipes-placar")
             .find(".placar-jogo-equipes-placar-visitante")
             .text()
-          if (!match.homeScore) match.homeScore = 0
-          if (!match.awayScore) match.awayScore = 0
           matches.push(match)
         })
         resolve(matches)
