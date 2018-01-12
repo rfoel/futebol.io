@@ -7,8 +7,11 @@ const app = express()
 
 app.use(history({ verbose: true }))
 app.use(serveStatic(path.join(__dirname, "/dist")))
-app.set("port", process.env.PORT || 5000)
 
-app.listen(app.get("port"), () => {
-  console.log("Node server is running on port", app.get("port"))
+app.listen(process.env.PORT || 3000, function() {
+  console.log(
+    "Express server listening on port %d in %s mode",
+    this.address().port,
+    app.settings.env
+  )
 })
