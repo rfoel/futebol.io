@@ -1,15 +1,12 @@
 <template>
   <header class="hero is-success">
   <div class="hero-body">
-    <div class="container">
+    <div class="container has-text-centered">
       <h1 class="title">
-        <figure class="image is-64x64">
-          <img src="static/logo.svg">
-        </figure>
         Futebol.io
       </h1>
       <h2 class="subtitle">
-        Primary subtitle
+        Sem frescuras. Só tabelas.
       </h2>
     </div>
   </div>
@@ -29,6 +26,7 @@ export default {
 header {
 	.image {
     display: inline-block;
+    vertical-align: top;
   }
 }
 </style>
