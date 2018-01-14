@@ -45,7 +45,7 @@ export default {
 			let el = this.$refs.league.find(league =>
 				league.classList.contains("is-selected")
 			)
-			this.$refs.leagues.scrollTo(el.offsetLeft - el.clientWidth / 2, 0)
+			this.$refs.leagues.scrollTo(el.offsetLeft - this.$refs.leagues.clientWidth/2 + el.clientWidth / 2, 0)
 		},
 		scroll() {
 			this.arrowLeft = this.$refs.leagues.scrollLeft > 0
