@@ -15,7 +15,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/:league',
+      path: '/@:league',
       name: 'league',
       component: League
     },
