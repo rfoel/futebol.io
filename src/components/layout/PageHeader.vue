@@ -13,7 +13,7 @@
               futebol.io
             </h1>
             <h2 class="subtitle">
-              Sem frescuras. Só tabelas.
+              Sem frescura. Só tabelas.
             </h2>
           </div>
         </router-link>
