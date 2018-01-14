@@ -16,19 +16,19 @@
       <table class="table table-fixed" :class="{'is-scrolled': isScrolled}">
         <thead>
           <tr>
-            <th><abbr title="Posição">#</abbr></th>
+            <th class="is-narrow"><abbr title="Posição">#</abbr></th>
             <th class="has-text-left">Time</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th><abbr title="Posição">#</abbr></th>
+            <th class="is-narrow"><abbr title="Posição">#</abbr></th>
             <th class="has-text-left">Time</th>
           </tr>
         </tfoot>
         <tbody>
           <tr v-for="(club, index) in data" :key="index">
-            <th>{{index+1}}</th>
+            <th class="is-narrow">{{index+1}}</th>
             <td class="has-text-left">
               {{isScrolled ? club.acronym : club.name}}
             </td>
@@ -168,5 +168,9 @@ td {
 	&.is-lighter {
 		background: lighten(whitesmoke, 1%);
 	}
+
+  &.is-narrow {
+    padding: 0 5px;
+  }
 }
 </style>
