@@ -1,82 +1,88 @@
 <template>
   <div class="container">
-    <section class="hero">
-      <div class="hero-body">
-        <h1 class="title">
-          {{league.name}}
-        </h1>
-        <h2 class="subtitle">
-          {{league.country}}
-        </h2>
+    <div class="columns">
+      <div class="column is-hidden-mobile"></div>
+      <div class="column">
+        <div class="hero">
+          <div class="hero-body">
+            <h1 class="title">
+              {{league.name}}
+            </h1>
+            <h2 class="subtitle">
+              {{league.country}}
+            </h2>
+          </div>
+        </div>
+        <div class="tables">
+          <table class="table table-fixed" :class="{'is-scrolled': isScrolled}">
+            <thead>
+              <tr>
+                <th class="is-narrow"><abbr title="Posição">#</abbr></th>
+                <th class="has-text-left">Time</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th class="is-narrow"><abbr title="Posição">#</abbr></th>
+                <th class="has-text-left">Time</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              <tr v-for="(club, index) in data" :key="index">
+                <th class="is-narrow">{{index+1}}</th>
+                <td class="has-text-left">
+                  {{isScrolled ? club.acronym : club.name}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="table-scroll" :class="{'is-scrolled': isScrolled}" ref="table" @scroll="scroll">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th><abbr title="Pontos">P</abbr></th>
+                  <th><abbr title="Jogos">J</abbr></th>
+                  <th><abbr title="Vitórias">V</abbr></th>
+                  <th><abbr title="Empates">E</abbr></th>
+                  <th><abbr title="Derrotas">D</abbr></th>
+                  <th><abbr title="Gols pró">GP</abbr></th>
+                  <th><abbr title="Gols contra">GC</abbr></th>
+                  <th><abbr title="Saldo de gols">SG</abbr></th>
+                  <th><abbr title="Aproveitamento">%</abbr></th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th><abbr title="Pontos">P</abbr></th>
+                  <th><abbr title="Jogos">J</abbr></th>
+                  <th><abbr title="Vitórias">V</abbr></th>
+                  <th><abbr title="Empates">E</abbr></th>
+                  <th><abbr title="Derrotas">D</abbr></th>
+                  <th><abbr title="Gols pró">GP</abbr></th>
+                  <th><abbr title="Gols contra">GC</abbr></th>
+                  <th><abbr title="Saldo de gols">SG</abbr></th>
+                  <th><abbr title="Aproveitamento">%</abbr></th>
+                </tr>
+              </tfoot>
+              <tbody>
+                <tr v-for="(club, index) in data" :key="index">
+                  <td class="is-lighter"><strong>{{club.points}}</strong></td>
+                  <td>{{club.played}}</td>
+                  <td class="is-lighter">{{club.won}}</td>
+                  <td>{{club.drawn}}</td>
+                  <td class="is-lighter">{{club.lost}}</td>
+                  <td>{{club.goalsFor}}</td>
+                  <td class="is-lighter">{{club.goalsAgainst}}</td>
+                  <td>{{club.goalDifference}}</td>
+                  <td class="is-lighter">{{club.percentage}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>    
+        </div>  
       </div>
-    </section>
-    <div class="tables">
-      <table class="table table-fixed" :class="{'is-scrolled': isScrolled}">
-        <thead>
-          <tr>
-            <th class="is-narrow"><abbr title="Posição">#</abbr></th>
-            <th class="has-text-left">Time</th>
-          </tr>
-        </thead>
-        <tfoot>
-          <tr>
-            <th class="is-narrow"><abbr title="Posição">#</abbr></th>
-            <th class="has-text-left">Time</th>
-          </tr>
-        </tfoot>
-        <tbody>
-          <tr v-for="(club, index) in data" :key="index">
-            <th class="is-narrow">{{index+1}}</th>
-            <td class="has-text-left">
-              {{isScrolled ? club.acronym : club.name}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="table-scroll" :class="{'is-scrolled': isScrolled}" ref="table" @scroll="scroll">
-        <table class="table">
-          <thead>
-            <tr>
-              <th><abbr title="Pontos">P</abbr></th>
-              <th><abbr title="Jogos">J</abbr></th>
-              <th><abbr title="Vitórias">V</abbr></th>
-              <th><abbr title="Empates">E</abbr></th>
-              <th><abbr title="Derrotas">D</abbr></th>
-              <th><abbr title="Gols pró">GP</abbr></th>
-              <th><abbr title="Gols contra">GC</abbr></th>
-              <th><abbr title="Saldo de gols">SG</abbr></th>
-              <th><abbr title="Aproveitamento">%</abbr></th>
-            </tr>
-          </thead>
-          <tfoot>
-            <tr>
-              <th><abbr title="Pontos">P</abbr></th>
-              <th><abbr title="Jogos">J</abbr></th>
-              <th><abbr title="Vitórias">V</abbr></th>
-              <th><abbr title="Empates">E</abbr></th>
-              <th><abbr title="Derrotas">D</abbr></th>
-              <th><abbr title="Gols pró">GP</abbr></th>
-              <th><abbr title="Gols contra">GC</abbr></th>
-              <th><abbr title="Saldo de gols">SG</abbr></th>
-              <th><abbr title="Aproveitamento">%</abbr></th>
-            </tr>
-          </tfoot>
-          <tbody>
-            <tr v-for="(club, index) in data" :key="index">
-              <td class="is-lighter"><strong>{{club.points}}</strong></td>
-              <td>{{club.played}}</td>
-              <td class="is-lighter">{{club.won}}</td>
-              <td>{{club.drawn}}</td>
-              <td class="is-lighter">{{club.lost}}</td>
-              <td>{{club.goalsFor}}</td>
-              <td class="is-lighter">{{club.goalsAgainst}}</td>
-              <td>{{club.goalDifference}}</td>
-              <td class="is-lighter">{{club.percentage}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>    
-    </div>  
+      <div class="column is-hidden-mobile"></div>
+    </div>
   </div>
 </template>
 
@@ -130,7 +136,6 @@ export default {
 .tables {
 	text-align: center;
 	position: relative;
-
 	.table {
 		margin-bottom: 0;
 	}
