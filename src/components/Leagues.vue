@@ -11,7 +11,7 @@
 			</figure>
 		</div>
     <div class="columns is-mobile is-vcentered" ref="leagues" @scroll="scroll">
-      <div class="column is-light is-one-fifth" ref="league" @click="scrollTo" v-for="league in leagues" :key="league.path" :class="{'is-selected': isSelected(league)}">
+      <div class="column is-light is-one-fifth" ref="league" @click.stop="scrollTo" v-for="league in leagues" :key="league.path" :class="{'is-selected': isSelected(league)}">
         <router-link :to="{name: 'league', params: {league: league.path}}">
           <figure class="image is-32x32">
             <img :src="'/static/'+league.icon+'.svg'">

@@ -91,7 +91,7 @@ export default {
 		return {
 			leagues: leagues,
 			data: {},
-      isScrolled: false
+			isScrolled: false
 		}
 	},
 	mounted() {
@@ -109,16 +109,16 @@ export default {
 	},
 	methods: {
 		loadStandings() {
-      const loading = this.$loading.open()
+			const loading = this.$loading.open()
 			scraper
 				.standings(this.league.url)
 				.then(data => {
-          this.data = data
-          loading.close()
+					this.data = data
+					loading.close()
 				})
 				.catch(error => {
-          console.error(error)
-          loading.close()          
+					loading.close()
+					console.error(error)
 				})
 		},
 		scroll() {
@@ -172,8 +172,8 @@ td {
 		background: lighten(whitesmoke, 1%);
 	}
 
-  &.is-narrow {
-    padding: 0 5px;
-  }
+	&.is-narrow {
+		padding: 0 5px;
+	}
 }
 </style>
