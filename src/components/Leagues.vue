@@ -68,7 +68,7 @@ export default {
 }
 .arrows {
 	position: absolute;
-	top: 25px;
+	top: 35px;
 	z-index: 1;
 	img {
 		max-height: 20px;
@@ -90,6 +90,7 @@ export default {
 	.column {
 		min-width: 180px;
 		margin: 0 10px;
+		padding-bottom: 1.25rem;
 		&.is-selected {
 			a {
 				color: #00e676;
