@@ -4,7 +4,7 @@
       <div class="container has-text-centered">
         <router-link :to="{name: 'home'}">
           <div class="header-icon">
-            <figure class="image is-96x96">
+            <figure class="image is-56x56">
               <img src="/static/logo.svg">
             </figure>
           </div>
@@ -37,14 +37,20 @@ export default {
 header {
   .hero-body {
     padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 	.header-icon,
 	.header-title {
 		display: inline-block;
-		vertical-align: middle;
+		vertical-align: top;
 	}
 	.header-icon {
 		margin-right: 25px;
+    .is-56x56 {
+      width: 56px;
+      height: 56px;
+    }
 	}
 	.header-title {
 		text-align: left;
