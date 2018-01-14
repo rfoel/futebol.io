@@ -36,7 +36,7 @@ export default {
 <style lang="scss" scoped>
 header {
   .hero-body {
-    padding: 1.5rem;
+    padding-bottom: 0;
   }
 	.header-icon,
 	.header-title {

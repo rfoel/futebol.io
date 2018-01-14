@@ -13,4 +13,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main {
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
 </style>

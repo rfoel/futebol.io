@@ -69,6 +69,7 @@ export const standings = league => {
         $(".tabela-times tbody tr").each((index, item) => {
           let club = {}
           club.name = $(item).find(".tabela-times-time-nome").text()
+          club.acronym = $(item).find(".tabela-times-time-sigla").text()
           list.push(club)
         })
         let x = 0

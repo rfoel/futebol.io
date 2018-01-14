@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <page-header></page-header>
-    <page-content class="flex-grow is-light"></page-content>
+    <page-content class="flex-grow"></page-content>
     <page-footer></page-footer>
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
 @import "~bulma/sass/utilities/_all";
 $primary: #00e676;
 $primary-invert: findColorInvert($primary);
+$link: $primary;
 $colors: (
 	"white": ($white, $black),
 	"black": ($black, $white),
@@ -36,7 +37,6 @@ $colors: (
 	"warning": ($warning, $warning-invert),
 	"danger": ($danger, $danger-invert)
 );
-$input-shadow: none;
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
