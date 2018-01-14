@@ -11,7 +11,7 @@
 			</figure>
 		</div>
     <div class="columns is-mobile is-vcentered" ref="leagues" @scroll="scroll">
-      <div class="column is-light is-one-fifth" v-for="league in leagues" :key="league.path" :class="{'is-selected': isSelected(league)}">
+      <div class="column is-light is-one-fifth" ref="league" @click="scrollTo" v-for="league in leagues" :key="league.path" :class="{'is-selected': isSelected(league)}">
         <router-link :to="{name: 'league', params: {league: league.path}}">
           <figure class="image is-32x32">
             <img :src="'/static/'+league.icon+'.svg'">
@@ -34,9 +34,18 @@ export default {
 			arrowRight: true
 		}
 	},
+	mounted() {
+		this.scrollTo()
+	},
 	methods: {
 		isSelected(league) {
 			return league.path == this.$route.params.league
+		},
+		scrollTo() {
+			let el = this.$refs.league.find(league =>
+				league.classList.contains("is-selected")
+			)
+			this.$refs.leagues.scrollTo(el.offsetLeft - el.clientWidth / 2, 0)
 		},
 		scroll() {
 			this.arrowLeft = this.$refs.leagues.scrollLeft > 0
@@ -70,6 +79,7 @@ export default {
 	position: absolute;
 	top: 35px;
 	z-index: 1;
+	padding: 0 5px;
 	img {
 		max-height: 20px;
 		opacity: 0.4;
