@@ -1,0 +1,47 @@
+[
+  {
+    "icon": "brazil",
+    "name": "Brasileirão Série A",
+    "path": "brasileirao-serie-a"
+  },
+  {
+    "icon": "brazil",
+    "name": "Brasileirão Série B",
+    "path": "brasileirao-serie-b"
+  },
+  {
+    "icon": "england",
+    "name": "Premier League",
+    "path": "premier-league"
+  },
+  {
+    "icon": "spain",
+    "name": "La Liga",
+    "path": "la-liga"
+  },
+  {
+    "icon": "france",
+    "name": "France Ligue 1",
+    "path": "france-ligue-1"
+  },
+  {
+    "icon": "germany",
+    "name": "Bundesliga",
+    "path": "bundesliga"
+  },
+  {
+    "icon": "italy",
+    "name": "Serie A",
+    "path": "serie-a"
+  },
+  {
+    "icon": "portugal",
+    "name": "Primeira Liga",
+    "path": "primeira-liga"
+  },
+  {
+    "icon": "argentina",
+    "name": "Superliga Argentina",
+    "path": "superliga-argentina"
+  }
+]

@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bulma/sass/utilities/_all";
 footer {
 	padding: 1.5rem 0;
 	.footer-heart {

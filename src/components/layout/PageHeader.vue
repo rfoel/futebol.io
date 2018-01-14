@@ -1,50 +1,53 @@
 <template>
-  <header class="hero is-light">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <router-link :to="{name: 'home'}">
-        <div class="header-icon">
-          <figure class="image is-96x96">
-            <img src="/static/logo.svg">
-          </figure>
-        </div>
-        <div class="header-title">
-          <h1 class="title">
-            futebol.io
-          </h1>
-          <h2 class="subtitle">
-            Sem frescuras. Só tabelas.
-          </h2>
-        </div>
-      </router-link>
+  <header class="hero">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <router-link :to="{name: 'home'}">
+          <div class="header-icon">
+            <figure class="image is-96x96">
+              <img src="/static/logo.svg">
+            </figure>
+          </div>
+          <div class="header-title">
+            <h1 class="title">
+              futebol.io
+            </h1>
+            <h2 class="subtitle">
+              Sem frescuras. Só tabelas.
+            </h2>
+          </div>
+        </router-link>
+      </div>
+      <leagues/>
     </div>
-  </div>
-</header>
+  </header>
 </template>
 
 <script>
+import Leagues from "@/components/Leagues.vue"
+
 export default {
-	data() {
-		return {}
+	components: {
+		Leagues
 	}
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~bulma/sass/utilities/_all";
 header {
-	.header-icon, .header-title {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .header-icon {
-    margin-right: 25px;
-  }
-  .header-title {
-    text-align: left;
-  }
-  .subtitle {
-    font-size: 1rem;
-  }
+	.header-icon,
+	.header-title {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.header-icon {
+		margin-right: 25px;
+	}
+	.header-title {
+		text-align: left;
+	}
+	.subtitle {
+		font-size: 1rem;
+	}
 }
 </style>

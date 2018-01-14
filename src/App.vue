@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <page-header></page-header>
-    <page-content class="flex-grow"></page-content>
+    <page-content class="flex-grow is-light"></page-content>
     <page-footer></page-footer>
   </div>
 </template>
