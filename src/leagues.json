@@ -2,46 +2,55 @@
   {
     "icon": "brazil",
     "name": "Brasileirão Série A",
-    "path": "brasileirao-serie-a"
+    "path": "brasileirao-serie-a",
+    "url": "brasileirao-serie-a"
   },
   {
     "icon": "brazil",
     "name": "Brasileirão Série B",
-    "path": "brasileirao-serie-b"
+    "path": "brasileirao-serie-b",
+    "url": "brasileirao-serie-b"    
   },
   {
     "icon": "england",
     "name": "Premier League",
-    "path": "premier-league"
+    "path": "premier-league",
+    "url": "futebol-internacional/futebol-ingles"
   },
   {
     "icon": "spain",
     "name": "La Liga",
-    "path": "la-liga"
+    "path": "la-liga",
+    "url": "futebol-internacional/futebol-espanhol"    
   },
   {
     "icon": "france",
     "name": "France Ligue 1",
-    "path": "france-ligue-1"
+    "path": "france-ligue-1",
+    "url": "futebol-internacional/futebol-frances"    
   },
   {
     "icon": "germany",
     "name": "Bundesliga",
-    "path": "bundesliga"
+    "path": "bundesliga",
+    "url": "futebol-internacional/futebol-alemao"    
   },
   {
     "icon": "italy",
     "name": "Serie A",
-    "path": "serie-a"
+    "path": "serie-a",
+    "url": "futebol-internacional/futebol-italiano"    
   },
   {
     "icon": "portugal",
     "name": "Primeira Liga",
-    "path": "primeira-liga"
+    "path": "primeira-liga",
+    "url": "futebol-internacional/futebol-portugues"    
   },
   {
     "icon": "argentina",
     "name": "Superliga Argentina",
-    "path": "superliga-argentina"
+    "path": "superliga-argentina",
+    "url": "futebol-internacional/futebol-argentino"    
   }
 ]

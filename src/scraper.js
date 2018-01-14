@@ -68,7 +68,7 @@ export const standings = league => {
         
         $(".tabela-times tbody tr").each((index, item) => {
           let club = {}
-          club.name = $(item).find(".tabela-times-time-link").attr("title")
+          club.name = $(item).find(".tabela-times-time-nome").text()
           list.push(club)
         })
         let x = 0

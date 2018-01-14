@@ -1,5 +1,5 @@
 <template>
-  <header class="hero">
+  <header class="hero is-light">
     <div class="hero-body">
       <div class="container has-text-centered">
         <router-link :to="{name: 'home'}">
@@ -35,6 +35,9 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  .hero-body {
+    padding: 1.5rem;
+  }
 	.header-icon,
 	.header-title {
 		display: inline-block;
