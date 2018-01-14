@@ -138,7 +138,7 @@ export default {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 250px;
+	width: 220px;
 	border-right: 1px solid #dbdbdb;
 
 	&.is-scrolled {
@@ -147,7 +147,7 @@ export default {
 }
 .table-scroll {
 	overflow-x: auto;
-	padding-left: 250px;
+	padding-left: 220px;
 
 	&.is-scrolled {
 		padding-left: 150px;
