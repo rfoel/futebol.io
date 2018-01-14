@@ -9,14 +9,6 @@ Vue.use(Buefy, {
   defaultIconPack: "fa"
 })
 
-import VueAnalytics from "vue-analytics"
-
-if (process.env.NODE_ENV === "production") {
-  Vue.use(VueAnalytics, {
-    id: process.env.ANALYTICS_ENV
-  })
-}
-
 Vue.config.productionTip = process.env.NODE_ENV === "production"
 
 /* eslint-disable no-new */

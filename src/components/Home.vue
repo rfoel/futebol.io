@@ -1,15 +1,7 @@
 <template>
   <div class="container">
     <div class="section">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto earum, debitis sapiente dolores dignissimos eveniet praesentium mollitia nulla vitae aperiam, ea possimus molestiae quae ab, voluptate veritatis asperiores quis. Minus.  
+      <strong>futebol.io</strong> - Tabelas dos campeonatos 🇧🇷 Brasileirāo Série A, 🇧🇷 Brasileirāo Série B, 🇬🇧 Premier League, 🇪🇸 La Liga, 🇫🇷 France Ligue 1, 🇩🇪 Bundesliga, 🇮🇹 Serie A, 🇵🇹 Primeira Liga e 🇦🇷 Superliga Argentina. Sem frescuras. Só tabelas.
     </div>
   </div>
 </template>
-
-<script>
-export default {}
-</script>
-
-<style lang="scss" scoped>
-
-</style>
