@@ -2,6 +2,10 @@
 $primary: #00c853;
 $primary-invert: findColorInvert($primary);
 $link: $primary;
+$link-invert: $primary;
+a:hover {
+  color: darken($primary, 5%) !important;
+}
 $colors: (
   'white': ($white, $black),
   'black': ($black, $white),

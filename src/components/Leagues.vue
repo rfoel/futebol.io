@@ -83,6 +83,12 @@ export default {
   watch: {
     league() {
       this.scrollTo()
+    },
+    $route(to, from) {
+      let league = this.leagues.find(league => league.path == this.league)
+      if (to.name == 'league' && league)
+        document.title = `futebol.io | ${league.name}`
+      else document.title = 'futebol.io | tabelas de futebol'
     }
   }
 }
