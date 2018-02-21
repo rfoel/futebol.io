@@ -17,7 +17,7 @@
           <table class="table table-fixed" :class="{'is-scrolled': isScrolled}">
             <thead>
               <tr>
-                <th class="is-narrow">
+                <th class="is-narrow has-text-centered">
                   <b-tooltip label="Posição" position="is-right" animated>
                     #
                   </b-tooltip>
@@ -27,7 +27,7 @@
             </thead>
             <tfoot>
               <tr>
-                <th class="is-narrow">
+                <th class="is-narrow has-text-centered">
                   <b-tooltip label="Posição" position="is-right" animated>
                     #
                   </b-tooltip>
@@ -37,7 +37,7 @@
             </tfoot>
             <tbody>
               <tr v-for="(club, index) in data" :key="index">
-                <th class="is-narrow">{{index+1}}</th>
+                <th class="is-narrow has-text-centered">{{index+1}}</th>
                 <td class="has-text-left">
                   {{isScrolled ? club.acronym : club.name}}
                 </td>
@@ -169,106 +169,106 @@
 </template>
 
 <script>
-  import leagues from '@/leagues.json'
-  import * as scraper from '@/scraper.js'
+import leagues from '@/leagues.json'
+import * as scraper from '@/scraper.js'
 
-  export default {
-    data() {
-      return {
-        leagues: leagues,
-        data: {},
-        isScrolled: false
-      }
-    },
-    mounted() {
+export default {
+  data() {
+    return {
+      leagues: leagues,
+      data: {},
+      isScrolled: false
+    }
+  },
+  mounted() {
+    this.loadStandings()
+  },
+  watch: {
+    $route(to, from) {
       this.loadStandings()
+    }
+  },
+  computed: {
+    league() {
+      return leagues.find(league => league.path == this.$route.params.league)
+    }
+  },
+  methods: {
+    loadStandings() {
+      const loading = this.$loading.open()
+      scraper
+        .standings(this.league.url)
+        .then(data => {
+          this.data = data
+          loading.close()
+        })
+        .catch(error => {
+          loading.close()
+        })
     },
-    watch: {
-      $route(to, from) {
-        this.loadStandings()
-      }
-    },
-    computed: {
-      league() {
-        return leagues.find(league => league.path == this.$route.params.league)
-      }
-    },
-    methods: {
-      loadStandings() {
-        const loading = this.$loading.open()
-        scraper
-          .standings(this.league.url)
-          .then(data => {
-            this.data = data
-            loading.close()
-          })
-          .catch(error => {
-            loading.close()
-          })
-      },
-      scroll() {
-        this.isScrolled = this.$refs.table.scrollLeft > 0
-      }
+    scroll() {
+      this.isScrolled = this.$refs.table.scrollLeft > 0
     }
   }
-
+}
 </script>
 
 <style lang="scss" scoped>
-  .hero-body {
-    padding: 3rem 0.5rem 0;
+.hero-body {
+  padding: 3rem 0.5rem 0;
+}
+
+.tables {
+  text-align: center;
+  position: relative;
+  .table {
+    margin-bottom: 0;
   }
+}
 
-  .tables {
-    text-align: center;
-    position: relative;
-    .table {
-      margin-bottom: 0;
-    }
+.table-fixed {
+  position: absolute;
+  top: 20px;
+  width: 250px;
+  border-right: 1px solid #dbdbdb;
+  transition: all 0.1s ease-out;
+  z-index: 99;
+  &.is-scrolled {
+    width: 150px;
   }
-
-  .table-fixed {
-    position: absolute;
-    top: 20px;
-    width: 250px;
-    border-right: 1px solid #dbdbdb;
-    transition: all 0.1s ease-out;
-    z-index: 99;
-    &.is-scrolled {
-      width: 150px;
-    }
-  }
-
-  .table-scroll {
-    overflow-x: auto;
-    padding-top: 20px;
-    padding-left: 250px;
-
-    &.is-scrolled {
-      padding-left: 150px;
-    }
-  }
-
-  tr {
-    height: 50px;
-    th,
-    td {
-      vertical-align: middle;
-      line-height: 1;
-    }
-  }
-
   th,
   td {
-    text-align: center;
-
-    &.is-lighter {
-      background: lighten(whitesmoke, 1%);
-    }
-
     &.is-narrow {
       padding: 0 5px;
     }
   }
+}
 
+.table-scroll {
+  overflow-x: auto;
+  padding-top: 20px;
+  padding-left: 250px;
+
+  &.is-scrolled {
+    padding-left: 150px;
+  }
+
+  th,
+  td {
+    text-align: center !important;
+
+    &.is-lighter {
+      background: lighten(whitesmoke, 1%);
+    }
+  }
+}
+
+tr {
+  height: 50px;
+  th,
+  td {
+    vertical-align: middle;
+    line-height: 1;
+  }
+}
 </style>

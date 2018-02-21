@@ -26,7 +26,7 @@ footer {
   padding: 1.5rem 0;
   .share {
     padding-bottom: 1rem;
-    line-height: .75;
+    line-height: .74;
   }
 }
 </style>
