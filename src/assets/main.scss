@@ -28,12 +28,13 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
   font-family: 'Varela', sans-serif;
 }
+
 ::selection {
   background: $primary;
 }
+
 .flex-grow {
   flex-grow: 1;
 }

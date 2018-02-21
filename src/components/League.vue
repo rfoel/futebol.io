@@ -330,7 +330,7 @@ export default {
   transition: all 0.1s ease-out;
   z-index: 99;
   &.is-scrolled {
-    width: 150px;
+    width: 100px;
   }
   th,
   td {
@@ -346,7 +346,7 @@ export default {
   padding-left: 250px;
 
   &.is-scrolled {
-    padding-left: 150px;
+    padding-left: 100px;
   }
 
   th,
