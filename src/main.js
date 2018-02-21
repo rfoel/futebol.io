@@ -9,6 +9,8 @@ Vue.use(Buefy, {
   defaultIconPack: "fa"
 })
 
+import './assets/main.scss'
+
 Vue.config.productionTip = process.env.NODE_ENV === "production"
 
 /* eslint-disable no-new */

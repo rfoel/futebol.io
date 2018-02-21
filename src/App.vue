@@ -20,35 +20,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss">
-@import "~bulma/sass/utilities/_all";
-$primary: #00e676;
-$primary-invert: findColorInvert($primary);
-$link: $primary;
-$colors: (
-	"white": ($white, $black),
-	"black": ($black, $white),
-	"light": ($light, $light-invert),
-	"dark": ($dark, $dark-invert),
-	"primary": ($primary, $primary-invert),
-	"info": ($info, $info-invert),
-	"success": ($success, $success-invert),
-	"warning": ($warning, $warning-invert),
-	"danger": ($danger, $danger-invert)
-);
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
-
-#app {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-}
-::selection {
-	background: $primary;
-}
-.flex-grow {
-	flex-grow: 1;
-}
-</style>
