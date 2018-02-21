@@ -5,12 +5,23 @@
       <div class="column">
         <div class="hero">
           <div class="hero-body">
-            <h1 class="title">
-              {{league.name}}
-            </h1>
-            <h2 class="subtitle">
-              {{league.country}}
-            </h2>
+            <div class="columns">
+              <div class="column has-text-centered-mobile">
+                <h1 class="title">
+                  {{league.name}}
+                </h1>
+                <h2 class="subtitle">
+                  {{league.country}}
+                </h2>
+              </div>
+              <div class="column has-text-centered-mobile">
+                <div class="field is-inline-flex-mobile is-pulled-right-tablet">
+                  <b-switch v-model="statistics">
+                    Estatísticas
+                  </b-switch>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="tables">
@@ -145,18 +156,18 @@
                 </tr>
               </tfoot>
               <tbody>
-                <tr v-for="(club, index) in data" :key="index">
+                <tr v-for="(club, index) in data" :key="index" :class="{'statistics': statistics}">
                   <td class="is-lighter">
                     <strong>{{club.points}}</strong>
                   </td>
                   <td>{{club.played}}</td>
-                  <td class="is-lighter">{{club.won}}</td>
-                  <td>{{club.drawn}}</td>
-                  <td class="is-lighter">{{club.lost}}</td>
-                  <td>{{club.goalsFor}}</td>
-                  <td class="is-lighter">{{club.goalsAgainst}}</td>
-                  <td>{{club.goalDifference}}</td>
-                  <td class="is-lighter">{{club.percentage}}</td>
+                  <td class="is-lighter" :class="{'is-best': statistics && club.played > 0 && club.bestW, 'is-worst': statistics && club.played > 0 && club.worstW}">{{club.won}}</td>
+                  <td :class="{'is-best': statistics && club.played > 0 && club.bestD, 'is-worst': statistics && club.played > 0 && club.worstD}">{{club.drawn}}</td>
+                  <td class="is-lighter" :class="{'is-best': statistics && club.played > 0 && club.bestL, 'is-worst': statistics && club.played > 0 && club.worstL}">{{club.lost}}</td>
+                  <td :class="{'is-best': statistics && club.played > 0 && club.bestGF, 'is-worst': statistics && club.played > 0 && club.worstGF}">{{club.goalsFor}}</td>
+                  <td class="is-lighter" :class="{'is-best': statistics && club.played > 0 && club.bestGA, 'is-worst': statistics && club.played > 0 && club.worstGA}">{{club.goalsAgainst}}</td>
+                  <td :class="{'is-best': statistics && club.played > 0 && club.bestGD, 'is-worst': statistics && club.played > 0 && club.worstGD, 'has-text-success': statistics && club.played > 0 && club.goalDifference > 0, 'has-text-danger': statistics && club.played > 0 && club.goalDifference < 0}">{{club.goalDifference}}</td>
+                  <td class="is-lighter" :class="{'is-best': statistics && club.played > 0 && club.bestP, 'is-worst': statistics && club.played > 0 && club.worstP}">{{club.percentage}}</td>
                 </tr>
               </tbody>
             </table>
@@ -177,7 +188,8 @@ export default {
     return {
       leagues: leagues,
       data: {},
-      isScrolled: false
+      isScrolled: false,
+      statistics: false
     }
   },
   mounted() {
@@ -200,6 +212,88 @@ export default {
         .standings(this.league.url)
         .then(data => {
           this.data = data
+
+          // best won
+          this.data
+            .filter(team => team.won == Math.max(...data.map(i => i.won)))
+            .map(team => (team.bestW = true))
+          // worst won
+          this.data
+            .filter(team => team.won == Math.min(...data.map(i => i.won)))
+            .map(team => (team.worstW = true))
+          // best drawn
+          this.data
+            .filter(team => team.drawn == Math.min(...data.map(i => i.drawn)))
+            .map(team => (team.bestD = true))
+          // worst drawn
+          this.data
+            .filter(team => team.drawn == Math.max(...data.map(i => i.drawn)))
+            .map(team => (team.worstD = true))
+          // best lost
+          this.data
+            .filter(team => team.lost == Math.min(...data.map(i => i.lost)))
+            .map(team => (team.bestL = true))
+          // worst lost
+          this.data
+            .filter(team => team.lost == Math.max(...data.map(i => i.lost)))
+            .map(team => (team.worstL = true))
+          // best goals for
+          this.data
+            .filter(
+              team => team.goalsFor == Math.max(...data.map(i => i.goalsFor))
+            )
+            .map(team => (team.bestGF = true))
+          // worst goals for
+          this.data
+            .filter(
+              team => team.goalsFor == Math.min(...data.map(i => i.goalsFor))
+            )
+            .map(team => (team.worstGF = true))
+          // best goals against
+          this.data
+            .filter(
+              team =>
+                team.goalsAgainst == Math.min(...data.map(i => i.goalsAgainst))
+            )
+            .map(team => (team.bestGA = true))
+          // worst goals against
+          this.data
+            .filter(
+              team =>
+                team.goalsAgainst == Math.max(...data.map(i => i.goalsAgainst))
+            )
+            .map(team => (team.worstGA = true))
+          // best goal difference
+          this.data
+            .filter(
+              team =>
+                team.goalDifference ==
+                Math.max(...data.map(i => i.goalDifference))
+            )
+            .map(team => (team.bestGD = true))
+          // worst goal difference
+          this.data
+            .filter(
+              team =>
+                team.goalDifference ==
+                Math.min(...data.map(i => i.goalDifference))
+            )
+            .map(team => (team.worstGD = true))
+          // best percentage
+          this.data
+            .filter(
+              team =>
+                team.percentage == Math.max(...data.map(i => i.percentage))
+            )
+            .map(team => (team.bestP = true))
+          // worst percentage
+          this.data
+            .filter(
+              team =>
+                team.percentage == Math.min(...data.map(i => i.percentage))
+            )
+            .map(team => (team.worstP = true))
+
           loading.close()
         })
         .catch(error => {
@@ -256,19 +350,43 @@ export default {
   th,
   td {
     text-align: center !important;
-
+    transition: all 0.1s ease-in-out;
     &.is-lighter {
       background: lighten(whitesmoke, 1%);
     }
   }
+  td {
+    &.is-best {
+      font-weight: bold;
+      background: rgba(#00c853, 0.3);
+    }
+    &.is-best {
+      font-weight: bold;
+      background: rgba(#00c853, 0.3);
+    }
+    &.is-worst {
+      font-weight: bold;
+      background: rgba(#ff3860, 0.3);
+    }
+  }
 }
-
+.has-text-success {
+  color: darken(#00c853, 5%) !important;
+}
+.has-text-danger {
+  color: darken(#ff3860, 5%) !important;
+}
 tr {
   height: 50px;
   th,
   td {
     vertical-align: middle;
     line-height: 1;
+  }
+}
+@media screen and (min-width: 768px) {
+  .is-pulled-right-tablet {
+    float: right;
   }
 }
 </style>

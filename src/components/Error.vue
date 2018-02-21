@@ -20,23 +20,21 @@
 <script>
 import leagues from '@/leagues.json'
 
-  export default {
-    computed: {
-      league() {
-        return leagues[Math.floor(Math.random()*leagues.length)]
-      }
+export default {
+  computed: {
+    league() {
+      return leagues[Math.floor(Math.random() * leagues.length)]
     }
   }
-
+}
 </script>
 
 <style lang="scss" scoped>
-  figure {
-    width: 200px;
-    margin: 20px auto;
-    img {
-      width: 100%;
-    }
+figure {
+  width: 200px;
+  margin: 20px auto;
+  img {
+    width: 100%;
   }
-
+}
 </style>

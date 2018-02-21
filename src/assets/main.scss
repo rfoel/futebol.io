@@ -33,3 +33,15 @@ $colors: (
 .flex-grow {
   flex-grow: 1;
 }
+
+.switch {
+  display: flex;
+  .control-label {
+    order: 1;
+    padding-left: 0;
+    padding-right: 0.5rem;
+  }
+  .check {
+    order: 2;
+  }
+}
