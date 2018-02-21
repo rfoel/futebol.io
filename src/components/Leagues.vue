@@ -51,7 +51,7 @@ export default {
       if (el)
         this.$refs.leagues.scrollTo(
           el.offsetLeft -
-            this.$refs.leagues.clientWidth / 1.7 +
+            this.$refs.leagues.clientWidth / 1.9 +
             el.clientWidth / 2,
           0
         )
