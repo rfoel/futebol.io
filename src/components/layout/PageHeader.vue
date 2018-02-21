@@ -1,10 +1,10 @@
 <template>
-  <header class="hero is-light">
+  <header class="hero">
     <div class="hero-body">
       <div class="container has-text-centered">
         <router-link :to="{name: 'home'}">
           <div class="header-icon">
-            <figure class="image is-56x56">
+            <figure class="image">
               <img src="/static/logo.svg">
             </figure>
           </div>
@@ -42,15 +42,12 @@ header {
   }
 	.header-icon,
 	.header-title {
-		display: inline-block;
-		vertical-align: top;
+    display: inline-block;
+    vertical-align: bottom;
 	}
 	.header-icon {
-		margin-right: 25px;
-    .is-56x56 {
-      width: 56px;
-      height: 56px;
-    }
+    margin-right: 25px;
+    width: 40px;
 	}
 	.header-title {
 		text-align: left;
