@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="columns">
+    <div class="columns" v-if="!isLoading">
       <div class="column is-hidden-mobile"></div>
       <div class="column">
         <div class="hero">
@@ -176,6 +176,7 @@
       </div>
       <div class="column is-hidden-mobile"></div>
     </div>
+    <b-loading :active.sync="isLoading"></b-loading>
   </div>
 </template>
 
@@ -189,7 +190,8 @@ export default {
       leagues: leagues,
       data: {},
       isScrolled: false,
-      statistics: false
+      statistics: false,
+      isLoading: false
     }
   },
   mounted() {
@@ -207,7 +209,7 @@ export default {
   },
   methods: {
     loadStandings() {
-      const loading = this.$loading.open()
+      this.isLoading = true
       scraper
         .standings(this.league.url)
         .then(data => {
@@ -294,10 +296,10 @@ export default {
             )
             .map(team => (team.worstP = true))
 
-          loading.close()
+          this.isLoading = false
         })
         .catch(error => {
-          loading.close()
+          this.isLoading = false
         })
     },
     scroll() {
