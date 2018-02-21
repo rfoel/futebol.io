@@ -20,6 +20,10 @@ $colors: (
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
 
+body {
+  overflow-x: hidden;
+}
+
 #app {
   display: flex;
   flex-direction: column;
