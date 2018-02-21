@@ -11,7 +11,7 @@
 			</figure>
 		</div>
     <div class="columns is-mobile is-vcentered" ref="leagues" @scroll="scroll">
-      <div class="column is-light is-one-fifth" ref="league" @click.stop="scrollTo" v-for="league in leagues" :key="league.path" :class="{'is-selected': isSelected(league)}">
+      <div class="column is-light is-one-fifth" :data-league="league.path" ref="league" @click="scrollTo;setLeague($route.params.league)" v-for="league in leagues" :key="league.path" :class="{'is-selected': isSelected(league)}">
         <router-link :to="{name: 'league', params: {league: league.path}}">
           <figure class="image is-32x32">
             <img :src="'/static/'+league.icon+'.svg'">
@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import leagues from '@/leagues.json'
 
 export default {
@@ -35,20 +36,22 @@ export default {
     }
   },
   mounted() {
+    this.setLeague(this.$route.params.league || '')
     this.scrollTo()
   },
   methods: {
+    ...mapActions(['setLeague']),
     isSelected(league) {
       return league.path == this.$route.params.league
     },
     scrollTo() {
-      let el = this.$refs.league.find(league =>
-        league.classList.contains('is-selected')
+      let el = this.$refs.league.find(
+        league => league.dataset.league == this.league
       )
       if (el)
         this.$refs.leagues.scrollTo(
           el.offsetLeft -
-            this.$refs.leagues.clientWidth / 2 +
+            this.$refs.leagues.clientWidth / 1.7 +
             el.clientWidth / 2,
           0
         )
@@ -70,6 +73,16 @@ export default {
       )
         return
       this.$refs.leagues.scrollLeft += 180
+    }
+  },
+  computed: {
+    league() {
+      return this.$store.state.league
+    }
+  },
+  watch: {
+    league() {
+      this.scrollTo()
     }
   }
 }
@@ -108,7 +121,7 @@ export default {
     margin: 0 10px;
     padding-bottom: 1.25rem;
     a {
-      transition: all .1s ease-out;
+      transition: all 0.1s ease-out;
     }
     &.is-selected {
       a {

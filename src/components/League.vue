@@ -17,13 +17,21 @@
           <table class="table table-fixed" :class="{'is-scrolled': isScrolled}">
             <thead>
               <tr>
-                <th class="is-narrow"><abbr title="Posição">#</abbr></th>
+                <th class="is-narrow">
+                  <b-tooltip label="Posição" position="is-right" animated>
+                    #
+                  </b-tooltip>
+                </th>
                 <th class="has-text-left">Time</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
-                <th class="is-narrow"><abbr title="Posição">#</abbr></th>
+                <th class="is-narrow">
+                  <b-tooltip label="Posição" position="is-right" animated>
+                    #
+                  </b-tooltip>
+                </th>
                 <th class="has-text-left">Time</th>
               </tr>
             </tfoot>
@@ -40,33 +48,107 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th><abbr title="Pontos">P</abbr></th>
-                  <th><abbr title="Jogos">J</abbr></th>
-                  <th><abbr title="Vitórias">V</abbr></th>
-                  <th><abbr title="Empates">E</abbr></th>
-                  <th><abbr title="Derrotas">D</abbr></th>
-                  <th><abbr title="Gols pró">GP</abbr></th>
-                  <th><abbr title="Gols contra">GC</abbr></th>
-                  <th><abbr title="Saldo de gols">SG</abbr></th>
-                  <th><abbr title="Aproveitamento">%</abbr></th>
+                  <th>
+                    <b-tooltip label="Pontos" position="is-top" animated>
+                      P
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Jogos" position="is-top" animated>
+                      J
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Vitórias" position="is-top" animated>
+                      V
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Empates" position="is-top" animated>
+                      E
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Derrotas" position="is-top" animated>
+                      D
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Gols pró" position="is-top" animated>
+                      GP
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Gols contra" position="is-top" animated>
+                      GC
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Saldo de gols" position="is-top" animated>
+                      SG
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Aproveitamento" position="is-left" animated>
+                      %
+                    </b-tooltip>
+                  </th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th><abbr title="Pontos">P</abbr></th>
-                  <th><abbr title="Jogos">J</abbr></th>
-                  <th><abbr title="Vitórias">V</abbr></th>
-                  <th><abbr title="Empates">E</abbr></th>
-                  <th><abbr title="Derrotas">D</abbr></th>
-                  <th><abbr title="Gols pró">GP</abbr></th>
-                  <th><abbr title="Gols contra">GC</abbr></th>
-                  <th><abbr title="Saldo de gols">SG</abbr></th>
-                  <th><abbr title="Aproveitamento">%</abbr></th>
+                  <th>
+                    <b-tooltip label="Pontos" position="is-top" animated>
+                      P
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Jogos" position="is-top" animated>
+                      J
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Vitórias" position="is-top" animated>
+                      V
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Empates" position="is-top" animated>
+                      E
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Derrotas" position="is-top" animated>
+                      D
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Gols pró" position="is-top" animated>
+                      GP
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Gols contra" position="is-top" animated>
+                      GC
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Saldo de gols" position="is-top" animated>
+                      SG
+                    </b-tooltip>
+                  </th>
+                  <th>
+                    <b-tooltip label="Aproveitamento" position="is-left" animated>
+                      %
+                    </b-tooltip>
+                  </th>
                 </tr>
               </tfoot>
               <tbody>
                 <tr v-for="(club, index) in data" :key="index">
-                  <td class="is-lighter"><strong>{{club.points}}</strong></td>
+                  <td class="is-lighter">
+                    <strong>{{club.points}}</strong>
+                  </td>
                   <td>{{club.played}}</td>
                   <td class="is-lighter">{{club.won}}</td>
                   <td>{{club.drawn}}</td>
@@ -78,8 +160,8 @@
                 </tr>
               </tbody>
             </table>
-          </div>    
-        </div>  
+          </div>
+        </div>
       </div>
       <div class="column is-hidden-mobile"></div>
     </div>
@@ -87,96 +169,106 @@
 </template>
 
 <script>
-import leagues from "@/leagues.json"
-import * as scraper from "@/scraper.js"
+  import leagues from '@/leagues.json'
+  import * as scraper from '@/scraper.js'
 
-export default {
-	data() {
-		return {
-			leagues: leagues,
-			data: {},
-			isScrolled: false
-		}
-	},
-	mounted() {
-		this.loadStandings()
-	},
-	watch: {
-		$route(to, from) {
-			this.loadStandings()
-		}
-	},
-	computed: {
-		league() {
-			return leagues.find(league => league.path == this.$route.params.league)
-		}
-	},
-	methods: {
-		loadStandings() {
-			const loading = this.$loading.open()
-			scraper
-				.standings(this.league.url)
-				.then(data => {
-					this.data = data
-					loading.close()
-				})
-				.catch(error => {
-					loading.close()
-					console.error(error)
-				})
-		},
-		scroll() {
-			this.isScrolled = this.$refs.table.scrollLeft > 0
-		}
-	}
-}
+  export default {
+    data() {
+      return {
+        leagues: leagues,
+        data: {},
+        isScrolled: false
+      }
+    },
+    mounted() {
+      this.loadStandings()
+    },
+    watch: {
+      $route(to, from) {
+        this.loadStandings()
+      }
+    },
+    computed: {
+      league() {
+        return leagues.find(league => league.path == this.$route.params.league)
+      }
+    },
+    methods: {
+      loadStandings() {
+        const loading = this.$loading.open()
+        scraper
+          .standings(this.league.url)
+          .then(data => {
+            this.data = data
+            loading.close()
+          })
+          .catch(error => {
+            loading.close()
+          })
+      },
+      scroll() {
+        this.isScrolled = this.$refs.table.scrollLeft > 0
+      }
+    }
+  }
+
 </script>
 
 <style lang="scss" scoped>
-.tables {
-	text-align: center;
-	position: relative;
-	.table {
-		margin-bottom: 0;
-	}
-}
-.table-fixed {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 220px;
-	border-right: 1px solid #dbdbdb;
+  .hero-body {
+    padding: 3rem 0.5rem 0;
+  }
 
-	&.is-scrolled {
-		width: 150px;
-	}
-}
-.table-scroll {
-	overflow-x: auto;
-	padding-left: 220px;
+  .tables {
+    text-align: center;
+    position: relative;
+    .table {
+      margin-bottom: 0;
+    }
+  }
 
-	&.is-scrolled {
-		padding-left: 150px;
-	}
-}
-tr {
-	height: 50px;
-	th,
-	td {
-		vertical-align: middle;
-		line-height: 1;
-	}
-}
-th,
-td {
-	text-align: center;
+  .table-fixed {
+    position: absolute;
+    top: 20px;
+    width: 250px;
+    border-right: 1px solid #dbdbdb;
+    transition: all 0.1s ease-out;
+    z-index: 99;
+    &.is-scrolled {
+      width: 150px;
+    }
+  }
 
-	&.is-lighter {
-		background: lighten(whitesmoke, 1%);
-	}
+  .table-scroll {
+    overflow-x: auto;
+    padding-top: 20px;
+    padding-left: 250px;
 
-	&.is-narrow {
-		padding: 0 5px;
-	}
-}
+    &.is-scrolled {
+      padding-left: 150px;
+    }
+  }
+
+  tr {
+    height: 50px;
+    th,
+    td {
+      vertical-align: middle;
+      line-height: 1;
+    }
+  }
+
+  th,
+  td {
+    text-align: center;
+
+    &.is-lighter {
+      background: lighten(whitesmoke, 1%);
+    }
+
+    &.is-narrow {
+      padding: 0 5px;
+    }
+  }
+
 </style>
