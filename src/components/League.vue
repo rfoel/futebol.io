@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <div class="tables">
+        <!-- <div class="tables">
           <table class="table table-fixed" :class="{'is-scrolled': isScrolled}">
             <thead>
               <tr>
@@ -172,7 +172,44 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> -->
+        <b-table :data="data" :mobile-cards="false" :striped="true" :hoverable="true">
+          <template slot-scope="props">
+            <b-table-column field="position" label="#" sortable numeric centered>
+              {{ props.row.position }}
+            </b-table-column>
+            <b-table-column field="name" label="Time" sortable>
+              {{ props.row.name }}
+            </b-table-column>
+            <b-table-column field="points" label="P" sortable centered>
+              <strong>{{ props.row.points }}</strong>
+            </b-table-column>
+            <b-table-column field="played" label="J" sortable centered>
+              {{ props.row.played }}
+            </b-table-column>
+            <b-table-column field="won" label="V" sortable centered>
+              {{ props.row.won }}
+            </b-table-column>
+            <b-table-column field="drawn" label="E" sortable centered>
+              {{ props.row.drawn }}
+            </b-table-column>
+            <b-table-column field="lost" label="D" sortable centered>
+              {{ props.row.lost }}
+            </b-table-column>
+            <b-table-column field="goalsFor" label="GP" sortable centered>
+              {{ props.row.goalsFor }}
+            </b-table-column>
+            <b-table-column field="goalsAgainst" label="GC" sortable centered>
+              {{ props.row.goalsAgainst }}
+            </b-table-column>
+            <b-table-column field="goalDifference" label="SG" sortable centered>
+              {{ props.row.goalDifference }}
+            </b-table-column>
+            <b-table-column field="percentage" label="%" sortable centered>
+              {{ props.row.percentage }}
+            </b-table-column>
+          </template>
+        </b-table>
       </div>
       <div class="column is-hidden-mobile"></div>
     </div>
@@ -181,214 +218,224 @@
 </template>
 
 <script>
-import leagues from '@/leagues.json'
-import * as scraper from '@/scraper.js'
+  import leagues from '@/leagues.json'
+  import * as scraper from '@/scraper.js'
 
-export default {
-  data() {
-    return {
-      leagues: leagues,
-      data: {},
-      isScrolled: false,
-      statistics: false,
-      isLoading: false
-    }
-  },
-  mounted() {
-    this.loadStandings()
-  },
-  watch: {
-    $route(to, from) {
+  export default {
+    data() {
+      return {
+        leagues: leagues,
+        data: [],
+        isScrolled: false,
+        statistics: false,
+        isLoading: false
+      }
+    },
+    mounted() {
       this.loadStandings()
-    }
-  },
-  computed: {
-    league() {
-      return leagues.find(league => league.path == this.$route.params.league)
-    }
-  },
-  methods: {
-    loadStandings() {
-      this.isLoading = true
-      scraper
-        .standings(this.league.url)
-        .then(data => {
-          this.data = data
+    },
+    watch: {
+      $route(to, from) {
+        this.loadStandings()
+      }
+    },
+    computed: {
+      league() {
+        return leagues.find(league => league.path == this.$route.params.league)
+      }
+    },
+    methods: {
+      loadStandings() {
+        this.isLoading = true
+        scraper
+          .standings(this.league.url)
+          .then(data => {
+            this.data = data
 
-          // best won
-          this.data
-            .filter(team => team.won == Math.max(...data.map(i => i.won)))
-            .map(team => (team.bestW = true))
-          // worst won
-          this.data
-            .filter(team => team.won == Math.min(...data.map(i => i.won)))
-            .map(team => (team.worstW = true))
-          // best drawn
-          this.data
-            .filter(team => team.drawn == Math.min(...data.map(i => i.drawn)))
-            .map(team => (team.bestD = true))
-          // worst drawn
-          this.data
-            .filter(team => team.drawn == Math.max(...data.map(i => i.drawn)))
-            .map(team => (team.worstD = true))
-          // best lost
-          this.data
-            .filter(team => team.lost == Math.min(...data.map(i => i.lost)))
-            .map(team => (team.bestL = true))
-          // worst lost
-          this.data
-            .filter(team => team.lost == Math.max(...data.map(i => i.lost)))
-            .map(team => (team.worstL = true))
-          // best goals for
-          this.data
-            .filter(
-              team => team.goalsFor == Math.max(...data.map(i => i.goalsFor))
-            )
-            .map(team => (team.bestGF = true))
-          // worst goals for
-          this.data
-            .filter(
-              team => team.goalsFor == Math.min(...data.map(i => i.goalsFor))
-            )
-            .map(team => (team.worstGF = true))
-          // best goals against
-          this.data
-            .filter(
-              team =>
+            // set position
+            this.data.map((team, index) => (team.position = index + 1))
+            // best won
+            this.data
+              .filter(team => team.won == Math.max(...data.map(i => i.won)))
+              .map(team => (team.bestW = true))
+            // worst won
+            this.data
+              .filter(team => team.won == Math.min(...data.map(i => i.won)))
+              .map(team => (team.worstW = true))
+            // best drawn
+            this.data
+              .filter(team => team.drawn == Math.min(...data.map(i => i.drawn)))
+              .map(team => (team.bestD = true))
+            // worst drawn
+            this.data
+              .filter(team => team.drawn == Math.max(...data.map(i => i.drawn)))
+              .map(team => (team.worstD = true))
+            // best lost
+            this.data
+              .filter(team => team.lost == Math.min(...data.map(i => i.lost)))
+              .map(team => (team.bestL = true))
+            // worst lost
+            this.data
+              .filter(team => team.lost == Math.max(...data.map(i => i.lost)))
+              .map(team => (team.worstL = true))
+            // best goals for
+            this.data
+              .filter(
+                team => team.goalsFor == Math.max(...data.map(i => i.goalsFor))
+              )
+              .map(team => (team.bestGF = true))
+            // worst goals for
+            this.data
+              .filter(
+                team => team.goalsFor == Math.min(...data.map(i => i.goalsFor))
+              )
+              .map(team => (team.worstGF = true))
+            // best goals against
+            this.data
+              .filter(
+                team =>
                 team.goalsAgainst == Math.min(...data.map(i => i.goalsAgainst))
-            )
-            .map(team => (team.bestGA = true))
-          // worst goals against
-          this.data
-            .filter(
-              team =>
+              )
+              .map(team => (team.bestGA = true))
+            // worst goals against
+            this.data
+              .filter(
+                team =>
                 team.goalsAgainst == Math.max(...data.map(i => i.goalsAgainst))
-            )
-            .map(team => (team.worstGA = true))
-          // best goal difference
-          this.data
-            .filter(
-              team =>
+              )
+              .map(team => (team.worstGA = true))
+            // best goal difference
+            this.data
+              .filter(
+                team =>
                 team.goalDifference ==
                 Math.max(...data.map(i => i.goalDifference))
-            )
-            .map(team => (team.bestGD = true))
-          // worst goal difference
-          this.data
-            .filter(
-              team =>
+              )
+              .map(team => (team.bestGD = true))
+            // worst goal difference
+            this.data
+              .filter(
+                team =>
                 team.goalDifference ==
                 Math.min(...data.map(i => i.goalDifference))
-            )
-            .map(team => (team.worstGD = true))
-          // best percentage
-          this.data
-            .filter(
-              team =>
+              )
+              .map(team => (team.worstGD = true))
+            // best percentage
+            this.data
+              .filter(
+                team =>
                 team.percentage == Math.max(...data.map(i => i.percentage))
-            )
-            .map(team => (team.bestP = true))
-          // worst percentage
-          this.data
-            .filter(
-              team =>
+              )
+              .map(team => (team.bestP = true))
+            // worst percentage
+            this.data
+              .filter(
+                team =>
                 team.percentage == Math.min(...data.map(i => i.percentage))
-            )
-            .map(team => (team.worstP = true))
+              )
+              .map(team => (team.worstP = true))
 
-          this.isLoading = false
-        })
-        .catch(error => {
-          this.isLoading = false
-        })
-    },
-    scroll() {
-      this.isScrolled = this.$refs.table.scrollLeft > 0
+            console.log(this.data)
+
+            this.isLoading = false
+          })
+          .catch(error => {
+            this.isLoading = false
+          })
+      },
+      scroll() {
+        this.isScrolled = this.$refs.table.scrollLeft > 0
+      }
     }
   }
-}
+
 </script>
 
 <style lang="scss" scoped>
-.hero-body {
-  padding: 3rem 0.5rem 0;
-}
-
-.tables {
-  text-align: center;
-  position: relative;
-  .table {
-    margin-bottom: 0;
-  }
-}
-
-.table-fixed {
-  position: absolute;
-  top: 20px;
-  width: 250px;
-  border-right: 1px solid #dbdbdb;
-  transition: all 0.1s ease-out;
-  z-index: 99;
-  &.is-scrolled {
-    width: 100px;
-  }
-  th,
-  td {
-    &.is-narrow {
-      padding: 0 5px;
-    }
-  }
-}
-
-.table-scroll {
-  overflow-x: auto;
-  padding-top: 20px;
-  padding-left: 250px;
-
-  &.is-scrolled {
-    padding-left: 100px;
+  .hero-body {
+    padding: 3rem 0.5rem 0;
   }
 
-  th,
-  td {
-    text-align: center !important;
-    transition: all 0.1s ease-in-out;
-    &.is-lighter {
-      background: lighten(whitesmoke, 1%);
+  .tables {
+    text-align: center;
+    position: relative;
+    .table {
+      margin-bottom: 0;
     }
   }
-  td {
-    &.is-best {
-      font-weight: bold;
-      background: rgba(#00c853, 0.3);
+
+  .table-fixed {
+    position: absolute;
+    top: 20px;
+    width: 250px;
+    border-right: 1px solid #dbdbdb;
+    transition: all 0.1s ease-out;
+    z-index: 99;
+    &.is-scrolled {
+      width: 100px;
     }
-    &.is-best {
-      font-weight: bold;
-      background: rgba(#00c853, 0.3);
-    }
-    &.is-worst {
-      font-weight: bold;
-      background: rgba(#ff3860, 0.3);
+    th,
+    td {
+      &.is-narrow {
+        padding: 0 5px;
+      }
     }
   }
-}
-.has-text-success {
-  color: darken(#00c853, 5%) !important;
-}
-.has-text-danger {
-  color: darken(#ff3860, 5%) !important;
-}
-tr {
-  height: 50px;
-  th,
-  td {
-    vertical-align: middle;
-    line-height: 1;
+
+  .table-scroll {
+    overflow-x: auto;
+    padding-top: 20px;
+    padding-left: 250px;
+
+    &.is-scrolled {
+      padding-left: 100px;
+    }
+
+    th,
+    td {
+      text-align: center !important;
+      transition: all 0.1s ease-in-out;
+      &.is-lighter {
+        background: lighten(whitesmoke, 1%);
+      }
+    }
+    td {
+      &.is-best {
+        font-weight: bold;
+        background: rgba(#00c853, 0.3);
+      }
+      &.is-best {
+        font-weight: bold;
+        background: rgba(#00c853, 0.3);
+      }
+      &.is-worst {
+        font-weight: bold;
+        background: rgba(#ff3860, 0.3);
+      }
+    }
   }
-}
-@media screen and (min-width: 768px) {
-  .is-pulled-right-tablet {
-    float: right;
+
+  .has-text-success {
+    color: darken(#00c853, 5%) !important;
   }
-}
+
+  .has-text-danger {
+    color: darken(#ff3860, 5%) !important;
+  }
+
+  tr {
+    height: 50px;
+    th,
+    td {
+      vertical-align: middle;
+      line-height: 1;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .is-pulled-right-tablet {
+      float: right;
+    }
+  }
+
 </style>
