@@ -1,0 +1,38 @@
+[
+  {
+    "path": "brasileirao-serie-a",
+    "url": "brasileirao-serie-a"
+  },
+  {
+    "path": "brasileirao-serie-b",
+    "url": "brasileirao-serie-b"    
+  },
+  {
+    "path": "premier-league",
+    "url": "futebol-internacional/futebol-ingles"
+  },
+  {
+    "path": "la-liga",
+    "url": "futebol-internacional/futebol-espanhol"    
+  },
+  {
+    "path": "france-ligue-1",
+    "url": "futebol-internacional/futebol-frances"    
+  },
+  {
+    "path": "bundesliga",
+    "url": "futebol-internacional/futebol-alemao"    
+  },
+  {
+    "path": "serie-a",
+    "url": "futebol-internacional/futebol-italiano"    
+  },
+  {
+    "path": "primeira-liga",
+    "url": "futebol-internacional/futebol-portugues"    
+  },
+  {
+    "path": "superliga-argentina",
+    "url": "futebol-internacional/futebol-argentino"    
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "api-futebol-io",
+    "production": "api-futebol-io"
+  }
+}
