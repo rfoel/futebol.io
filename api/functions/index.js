@@ -15,8 +15,8 @@ app.listen(4000, function() {
   )
 })
 
-app.get('/', (req, res) => {
-  res.send('Server running gracefully 🦄')
+app.use((req, res) => {
+  res.send({ message: 'Server running gracefully 🦄', timestamp: Date.now() })
 })
 
 app.get('/league/:league', (req, res) => {
