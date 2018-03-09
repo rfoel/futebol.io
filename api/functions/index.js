@@ -15,7 +15,7 @@ app.listen(4000, function() {
   )
 })
 
-app.use((req, res) => {
+app.get('/', (req, res) => {
   res.send({ message: 'Server running gracefully 🦄', timestamp: Date.now() })
 })
 
