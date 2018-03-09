@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "node server.js",
+    "start": "firebase serve",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "test": "npm run unit",
     "build": "node build/build.js"
