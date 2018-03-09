@@ -1,6 +1,6 @@
 {
-  "name": "functions",
-  "description": "Cloud Functions for Firebase",
+  "name": "api.futebol.io",
+  "description": "API project for futebol.io",
   "scripts": {
     "lint": "./node_modules/.bin/eslint .",
     "serve": "firebase serve --only functions",
@@ -20,6 +20,5 @@
   "devDependencies": {
     "eslint": "^4.12.0",
     "eslint-plugin-promise": "^3.6.0"
-  },
-  "private": true
+  }
 }
