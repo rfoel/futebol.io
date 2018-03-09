@@ -31,10 +31,10 @@
   <link rel="shortcut icon" href="/static/favicon/favicon.ico">
   <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
   <meta name="theme-color" content="#00c853">
-  
+
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet">
-  
+
   <title>futebol.io | tabelas de futebol</title>
 </head>
 
@@ -42,24 +42,36 @@
   <div id="app"></div>
   <!-- built files will be auto injected -->
   <div id="fb-root"></div>
-  <script>
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.11&appId=973236246165312';
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+  <script async defer>
+    if (navigator.userAgent.indexOf("Speed Insights") == -1) {
+
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.11&appId=973236246165312';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+          function () {
+            (b[l].q = b[l].q || []).push(arguments)
+          });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = 'https://www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+      }(window, document, 'script', 'ga'));
+      ga('create', 'UA-112420242-1');
+      ga('send', 'pageview');
+    }
+
   </script>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='https://www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-112420242-1');ga('send','pageview');
-  </script>
+  <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 
 </html>
