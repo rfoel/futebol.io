@@ -9,7 +9,14 @@ const app = express()
 
 app.use(compression())
 app.use(history({ verbose: true }))
-app.use(serveStatic(path.join(__dirname, '/dist')), { maxAge: '1d' })
+
+app.get('/*', function(req, res, next) {
+  if (req.url.indexOf('/static/') === 0) {
+    res.setHeader('Cache-Control', 'public, max-age=2592000')
+    res.setHeader('Expires', new Date(Date.now() + 2592000000).toUTCString())
+  }
+  next()
+})
 
 app.listen(8080, function() {
   console.log(
