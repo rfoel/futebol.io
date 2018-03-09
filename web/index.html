@@ -2,6 +2,9 @@
 <html>
 
 <head>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet">
+
   <meta charset="utf-8">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -32,9 +35,6 @@
   <meta name="msapplication-config" content="/static/favicon/browserconfig.xml">
   <meta name="theme-color" content="#00c853">
 
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet">
-
   <title>futebol.io | tabelas de futebol</title>
 </head>
 
@@ -44,7 +44,6 @@
   <div id="fb-root"></div>
   <script async defer>
     if (navigator.userAgent.indexOf("Speed Insights") == -1) {
-
       (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
@@ -68,10 +67,26 @@
       }(window, document, 'script', 'ga'));
       ga('create', 'UA-112420242-1');
       ga('send', 'pageview');
+
+      window.twttr = (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function (f) {
+          t._e.push(f);
+        };
+
+        return t;
+      }(document, "script", "twitter-wjs"));
     }
 
   </script>
-  <script async defer src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </body>
 
 </html>
