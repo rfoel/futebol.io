@@ -175,11 +175,11 @@
         </div>
         <!-- <b-table :data="data" :mobile-cards="false" :striped="true" :hoverable="true">
           <template slot-scope="props">
-            <b-table-column field="position" label="#" sortable numeric centered>
+            <b-table-column field="position" label="#" sortable numeric centered class="fixed-column">
               {{ props.row.position }}
             </b-table-column>
-            <b-table-column field="name" label="Time" sortable>
-              <span style="word-wrap: no-wrap">{{ props.row.name }}</span>
+            <b-table-column field="name" label="Time" sortable class="fixed-column">
+              {{ props.row.name }}
             </b-table-column>
             <b-table-column field="points" label="P" sortable centered>
               <strong>{{ props.row.points }}</strong>
@@ -187,22 +187,22 @@
             <b-table-column field="played" label="J" sortable centered>
               {{ props.row.played }}
             </b-table-column>
-            <b-table-column field="won" label="V" sortable centered>
-              {{ props.row.won }}
+            <b-table-column field="won" label="V" sortable centered :class="{'is-best has-text-success': statistics && props.row.played > 0 && props.row.bestW, 'is-worst has-text-danger': statistics && props.row.played > 0 && props.row.worstW}">
+              {{props.row.won}}
             </b-table-column>
-            <b-table-column field="drawn" label="E" sortable centered>
+            <b-table-column field="drawn" label="E" sortable centered :class="{'is-best has-text-success': statistics && props.row.played > 0 && props.row.bestD, 'is-worst has-text-danger': statistics && props.row.played > 0 && props.row.worstD}">
               {{ props.row.drawn }}
             </b-table-column>
-            <b-table-column field="lost" label="D" sortable centered>
+            <b-table-column field="lost" label="D" sortable centered :class="{'is-best has-text-success': statistics && props.row.played > 0 && props.row.bestL, 'is-worst has-text-danger': statistics && props.row.played > 0 && props.row.worstL}">
               {{ props.row.lost }}
             </b-table-column>
-            <b-table-column field="goalsFor" label="GP" sortable centered>
+            <b-table-column field="goalsFor" label="GP" sortable centered :class="{'is-best has-text-success': statistics && props.row.played > 0 && props.row.bestGF, 'is-worst has-text-danger': statistics && props.row.played > 0 && props.row.worstGF}">
               {{ props.row.goalsFor }}
             </b-table-column>
-            <b-table-column field="goalsAgainst" label="GC" sortable centered>
+            <b-table-column field="goalsAgainst" label="GC" sortable centered :class="{'is-best has-text-success': statistics && props.row.played > 0 && props.row.bestGA, 'is-worst has-text-danger': statistics && props.row.played > 0 && props.row.worstGA}">
               {{ props.row.goalsAgainst }}
             </b-table-column>
-            <b-table-column field="goalDifference" label="SG" sortable centered>
+            <b-table-column field="goalDifference" label="SG" sortable centered :class="{'is-best': statistics && props.row.played > 0 && props.row.bestGD, 'is-worst': statistics && props.row.played > 0 && props.row.worstGD, 'has-text-success': statistics && props.row.played > 0 && props.row.goalDifference > 0, 'has-text-danger': statistics && props.row.played > 0 && props.row.goalDifference < 0}">
               {{ props.row.goalDifference }}
             </b-table-column>
             <b-table-column field="percentage" label="%" sortable centered>
@@ -396,19 +396,20 @@ export default {
       background: lighten(whitesmoke, 1%);
     }
   }
-  td {
-    &.is-best {
-      font-weight: bold;
-      background: rgba(#00c853, 0.3);
-    }
-    &.is-best {
-      font-weight: bold;
-      background: rgba(#00c853, 0.3);
-    }
-    &.is-worst {
-      font-weight: bold;
-      background: rgba(#ff3860, 0.3);
-    }
+}
+
+.is-sortable {
+  background: red !important;
+}
+
+td {
+  word-wrap: none;
+  white-space: nowrap;
+  &.is-best {
+    background: rgba(#00c853, 0.3);
+  }
+  &.is-worst {
+    background: rgba(#ff3860, 0.3);
   }
 }
 

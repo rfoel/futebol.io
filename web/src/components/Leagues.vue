@@ -2,19 +2,19 @@
   <div class="container">
 		<div class="arrows is-left" :class="{'is-invisible': !arrowLeft}" @mousedown="scrollLeft">
 			<figure class="image is-16x16">
-				<img src="/static/left.svg">
+				<img src="/static/left.svg" alt="Left arrow">
 			</figure>
 		</div>
 		<div class="arrows is-right" :class="{'is-invisible': !arrowRight}" @mousedown="scrollRight">
 			<figure class="image is-16x16">
-				<img src="/static/right.svg">
+				<img src="/static/right.svg" alt="Right arrow">
 			</figure>
 		</div>
     <div class="columns is-mobile is-vcentered" ref="leagues" @scroll="scroll">
       <div class="column is-light is-one-fifth" :data-league="league.path" ref="league" @click="scrollTo;setLeague($route.params.league)" v-for="league in leagues" :key="league.path" :class="{'is-selected': isSelected(league)}">
         <router-link :to="{name: 'league', params: {league: league.path}}">
           <figure class="image is-32x32">
-            <img :src="'/static/'+league.icon+'.svg'">
+            <img :src="'/static/'+league.icon+'.svg'" :alt="league.country">
           </figure>
           {{league.name}}
         </router-link>

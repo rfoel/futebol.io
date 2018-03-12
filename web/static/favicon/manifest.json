@@ -1,5 +1,6 @@
 {
-    "name": "",
+    "name": "futebol.io | tabelas de futebol",
+    "short_name": "futebol.io",
     "icons": [
         {
             "src": "/static/favicon/android-chrome-192x192.png",

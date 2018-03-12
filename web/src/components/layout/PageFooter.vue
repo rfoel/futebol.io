@@ -11,7 +11,7 @@
             data-show-count="false">Tweet</a>
         </div>
         <p>
-          <small class="has-text-grey-light">futebol.io API em breve</small>
+          <small>futebol.io API em breve</small>
         </p>
         <small>
           <i class="fas fa-code"></i> com

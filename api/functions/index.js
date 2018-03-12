@@ -80,7 +80,7 @@ app.get('/league/:league', (req, res) => {
           .next()
           .next()
           .text()
-        list[index].goalDifference = $(item)
+        let gd = $(item)
           .find('.tabela-pontos-ponto')
           .next()
           .next()
@@ -90,6 +90,7 @@ app.get('/league/:league', (req, res) => {
           .next()
           .next()
           .text()
+        list[index].goalDifference = parseInt(gd) > 0 ? `+${gd}` : gd
         list[index].percentage = $(item)
           .find('.tabela-pontos-ponto')
           .next()
