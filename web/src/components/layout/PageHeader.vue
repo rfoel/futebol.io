@@ -5,7 +5,7 @@
         <router-link :to="{name: 'home'}">
           <div class="header-icon">
             <figure class="image">
-              <img src="/static/logo.svg">
+              <img src="/static/logo.svg" alt="futebol.io">
             </figure>
           </div>
           <div class="header-title">

@@ -1,10 +1,10 @@
 @import '~bulma/sass/utilities/_all';
 $primary: #00c853;
 $primary-invert: findColorInvert($primary);
-$link: $primary;
+$link: darken($primary, 5%);
 $link-invert: $primary;
 a:hover {
-  color: darken($primary, 5%) !important;
+  color: darken($primary, 10%) !important;
 }
 $colors: (
   'white': ($white, $black),

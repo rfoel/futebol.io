@@ -105,7 +105,7 @@ app.get('/league/:league', (req, res) => {
       })
       res.send(list)
     } else {
-      res.send("Couldn't fetch the data.")
+      res.send({ message: "Couldn't fetch the data.", timestamp: Date.now() })
     }
   })
 })
