@@ -17,7 +17,7 @@
           <i class="fas fa-code"></i> com
           <i class="fas fa-heart has-text-danger"></i>
           por
-          <a href="http://rafaelfran.co" target="_blank" rel="noopener">Rafael Franco</a>
+          <a href="http://rafaelfran.co" target="_blank" rel="noopener" class="has-text-black">Rafael Franco</a>
         </small>
       </div>
     </div>
