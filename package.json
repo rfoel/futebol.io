@@ -1,0 +1,25 @@
+{
+  "name": "futebol.io",
+  "version": "1.0.0",
+  "description": "Sem frescura. Só tabelas.",
+  "scripts": {
+    "api": "npm run --prefix api/functions dev",
+    "web": "npm run --prefix web dev",
+    "dev":
+      "concurrently --names \"web,api\" \"npm run --prefix web dev\" \"npm run --prefix api/functions dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfoel/futebol.io.git"
+  },
+  "keywords": ["vue", "vuejs", "soccer", "futebol", "football"],
+  "author": "@rfoel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rfoel/futebol.io/issues"
+  },
+  "homepage": "https://github.com/rfoel/futebol.io#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}

@@ -1,2 +1,3 @@
 .DS_Store
 api/firebase-debug.log
+node_modules/
