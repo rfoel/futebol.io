@@ -1,0 +1,12 @@
+{
+  "extends": ["airbnb-base", "plugin:vue/recommended"],
+  "rules": {
+    "semi": 0,
+    "no-console": 0,
+    "radix": 0,
+    "comma-dangle": 0,
+    "import/no-unresolved": 0,
+    "import/extensions": 0
+  },
+  "plugins": ["vue"]
+}

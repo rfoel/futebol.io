@@ -7,16 +7,16 @@
 </template>
 
 <script>
-import PageHeader from "@/components/layout/PageHeader.vue"
-import PageContent from "@/components/layout/PageContent.vue"
-import PageFooter from "@/components/layout/PageFooter.vue"
+import PageHeader from '@/components/layout/PageHeader.vue'
+import PageContent from '@/components/layout/PageContent.vue'
+import PageFooter from '@/components/layout/PageFooter.vue'
 
 export default {
-	name: "app",
-	components: {
-		PageHeader,
-		PageContent,
-		PageFooter
-	}
+  name: 'app',
+  components: {
+    PageHeader,
+    PageContent,
+    PageFooter
+  }
 }
 </script>

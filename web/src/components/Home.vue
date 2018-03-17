@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="section columns">
-      <div class="column"></div>
       <div class="column is-half">
         <h1 class="title has-text-centered">futebol.io</h1>
         <p>
@@ -12,7 +11,6 @@
           Sem frescura. Só tabelas.
         </p>
       </div>
-      <div class="column"></div>
     </div>
   </div>
 </template>

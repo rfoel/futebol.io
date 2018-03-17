@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import League from '@/components/League'
 import Privacy from '@/components/Privacy'
-import Error from '@/components/Error'
+import NotFound from '@/components/NotFound'
 import leagues from '@/leagues.json'
 
 Vue.use(Router)
@@ -27,7 +27,7 @@ const router = new Router({
     },
     {
       path: '*',
-      component: Error
+      component: NotFound
     }
   ]
 })
