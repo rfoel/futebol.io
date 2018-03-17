@@ -12,6 +12,7 @@ app.use(cors())
 
 app.listen(port, () => {
   console.log(`API listening on port ${port} in ${app.settings.env} mode`)
+  console.log(`http://localhost:${port}`)
 })
 
 app.get('/', (req, res) => {
