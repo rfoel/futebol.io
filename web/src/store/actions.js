@@ -9,7 +9,7 @@ export const setLeague = ({ commit }, league) => {
 export const getStandings = ({}, league) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`/league/${league}`)
+      .get(`/leagues/${league}`)
       .then(response => {
         resolve(response.data)
       })
