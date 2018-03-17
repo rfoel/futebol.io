@@ -6,13 +6,12 @@ const cors = require('cors')
 const leagues = require('./leagues')
 
 const app = express()
+const port = 4000
 
 app.use(cors())
 
-app.listen(4000, function() {
-  console.log(
-    `API listening on port ${this.address().port} in ${app.settings.env} mode`
-  )
+app.listen(port, () => {
+  console.log(`API listening on port ${port} in ${app.settings.env} mode`)
 })
 
 app.get('/', (req, res) => {
@@ -21,14 +20,14 @@ app.get('/', (req, res) => {
 
 app.get('/league/:league', (req, res) => {
   res.set('Cache-Control', 'public, max-age=300, s-maxage=600')
-  let league = leagues.find(league => league.path === req.params.league)
-  let url = `https://globoesporte.globo.com/futebol/${league.url}`
+  const league = leagues.find(each => each.path === req.params.league)
+  const url = `https://globoesporte.globo.com/futebol/${league.url}`
   request(url, (error, response, html) => {
     if (!error) {
       const $ = cheerio.load(html)
-      let list = []
+      const list = []
       $('.tabela-times tbody tr').each((index, item) => {
-        let club = {}
+        const club = {}
         club.name = $(item)
           .find('.tabela-times-time-nome')
           .text()
@@ -80,7 +79,7 @@ app.get('/league/:league', (req, res) => {
           .next()
           .next()
           .text()
-        let gd = $(item)
+        const gd = $(item)
           .find('.tabela-pontos-ponto')
           .next()
           .next()
