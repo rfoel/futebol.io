@@ -5,14 +5,19 @@
   "scripts": {
     "api": "npm run --prefix api/functions dev",
     "web": "npm run --prefix web dev",
-    "dev":
-      "concurrently --names \"web,api\" \"npm run --prefix web dev\" \"npm run --prefix api/functions dev\""
+    "dev": "concurrently --names \"web,api\" \"npm run --prefix web dev\" \"npm run --prefix api/functions dev\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rfoel/futebol.io.git"
   },
-  "keywords": ["vue", "vuejs", "soccer", "futebol", "football"],
+  "keywords": [
+    "vue",
+    "vuejs",
+    "soccer",
+    "futebol",
+    "football"
+  ],
   "author": "@rfoel",
   "license": "ISC",
   "bugs": {

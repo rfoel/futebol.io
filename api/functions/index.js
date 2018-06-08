@@ -131,82 +131,48 @@ const statistics = standings => {
   // set position
   standings.map((team, index) => (team.position = index + 1))
   // best won
-  standings
-    .filter(team => team.won === Math.max(...standings.map(i => i.won)))
-    .map(team => (team.bestW = true))
+  standings.filter(team => team.won === Math.max(...standings.map(i => i.won))).map(team => (team.bestW = true))
   // worst won
-  standings
-    .filter(team => team.won === Math.min(...standings.map(i => i.won)))
-    .map(team => (team.worstW = true))
+  standings.filter(team => team.won === Math.min(...standings.map(i => i.won))).map(team => (team.worstW = true))
   // best drawn
-  standings
-    .filter(team => team.drawn === Math.min(...standings.map(i => i.drawn)))
-    .map(team => (team.bestD = true))
+  standings.filter(team => team.drawn === Math.min(...standings.map(i => i.drawn))).map(team => (team.bestD = true))
   // worst drawn
-  standings
-    .filter(team => team.drawn === Math.max(...standings.map(i => i.drawn)))
-    .map(team => (team.worstD = true))
+  standings.filter(team => team.drawn === Math.max(...standings.map(i => i.drawn))).map(team => (team.worstD = true))
   // best lost
-  standings
-    .filter(team => team.lost === Math.min(...standings.map(i => i.lost)))
-    .map(team => (team.bestL = true))
+  standings.filter(team => team.lost === Math.min(...standings.map(i => i.lost))).map(team => (team.bestL = true))
   // worst lost
-  standings
-    .filter(team => team.lost === Math.max(...standings.map(i => i.lost)))
-    .map(team => (team.worstL = true))
+  standings.filter(team => team.lost === Math.max(...standings.map(i => i.lost))).map(team => (team.worstL = true))
   // best goals for
   standings
-    .filter(
-      team => team.goalsFor === Math.max(...standings.map(i => i.goalsFor))
-    )
+    .filter(team => team.goalsFor === Math.max(...standings.map(i => i.goalsFor)))
     .map(team => (team.bestGF = true))
   // worst goals for
   standings
-    .filter(
-      team => team.goalsFor === Math.min(...standings.map(i => i.goalsFor))
-    )
+    .filter(team => team.goalsFor === Math.min(...standings.map(i => i.goalsFor)))
     .map(team => (team.worstGF = true))
   // best goals against
   standings
-    .filter(
-      team =>
-        team.goalsAgainst === Math.min(...standings.map(i => i.goalsAgainst))
-    )
+    .filter(team => team.goalsAgainst === Math.min(...standings.map(i => i.goalsAgainst)))
     .map(team => (team.bestGA = true))
   // worst goals against
   standings
-    .filter(
-      team =>
-        team.goalsAgainst === Math.max(...standings.map(i => i.goalsAgainst))
-    )
+    .filter(team => team.goalsAgainst === Math.max(...standings.map(i => i.goalsAgainst)))
     .map(team => (team.worstGA = true))
   // best goal difference
   standings
-    .filter(
-      team =>
-        team.goalDifference ===
-        Math.max(...standings.map(i => i.goalDifference))
-    )
+    .filter(team => team.goalDifference === Math.max(...standings.map(i => i.goalDifference)))
     .map(team => (team.bestGD = true))
   // worst goal difference
   standings
-    .filter(
-      team =>
-        team.goalDifference ===
-        Math.min(...standings.map(i => i.goalDifference))
-    )
+    .filter(team => team.goalDifference === Math.min(...standings.map(i => i.goalDifference)))
     .map(team => (team.worstGD = true))
   // best percentage
   standings
-    .filter(
-      team => team.percentage === Math.max(...standings.map(i => i.percentage))
-    )
+    .filter(team => team.percentage === Math.max(...standings.map(i => i.percentage)))
     .map(team => (team.bestP = true))
   // worst percentage
   standings
-    .filter(
-      team => team.percentage === Math.min(...standings.map(i => i.percentage))
-    )
+    .filter(team => team.percentage === Math.min(...standings.map(i => i.percentage)))
     .map(team => (team.worstP = true))
   standings = standings.sort((a, b) => (a.name > b.name ? 1 : -1))
   // console.log(standings)
